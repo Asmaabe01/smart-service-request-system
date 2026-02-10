@@ -51,9 +51,12 @@ Git & GitHub
 Maven
 
 Swagger (API documentation)
----
-📂 Project Structure
 
+---
+
+📁 Project Structure
+
+```text
 smart-service-request-system/
 ├── backend/
 │   ├── controller/
@@ -64,4 +67,5 @@ smart-service-request-system/
 │   └── config/
 ├── frontend/
 └── README.md
+
 
