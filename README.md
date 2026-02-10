@@ -7,6 +7,7 @@ This project simulates a real-world system used in companies, universities, or o
 
 The main focus of this project is backend development, system architecture, and secure API design, with a simple frontend to demonstrate end-to-end functionality.
 
+---
 🎯 Project Objectives
 
 Build a real-world backend system using Java and Spring Boot
@@ -18,3 +19,49 @@ Implement authentication and role-based authorization
 Practice database modeling and relationships
 
 Learn backend development through a complete project workflow
+
+---
+🛠️ Tech Stack
+Backend
+
+Java
+
+Spring Boot
+
+Spring Security
+
+JWT Authentication
+
+JPA / Hibernate
+
+MySQL or PostgreSQL
+
+Frontend
+
+React
+
+Axios
+
+Basic CSS / Tailwind (simple UI)
+
+Tools
+
+Git & GitHub
+
+Maven
+
+Swagger (API documentation)
+---
+📂 Project Structure
+
+smart-service-request-system/
+├── backend/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   ├── security/
+│   └── config/
+├── frontend/
+└── README.md
+
