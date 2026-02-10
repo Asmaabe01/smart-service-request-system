@@ -21,36 +21,26 @@ Practice database modeling and relationships
 Learn backend development through a complete project workflow
 
 ---
-🛠️ Tech Stack
-Backend
+## 🛠 Tech Stack
 
-Java
+### Backend
+- **Java**
+- **Spring Boot**
+- **Spring Security**
+- **JWT Authentication**
+- **JPA / Hibernate**
+- **MySQL or PostgreSQL**
 
-Spring Boot
+### Frontend
+- **React**
+- **Axios**
+- **Basic CSS / Tailwind** (simple UI)
 
-Spring Security
+### Tools
+- **Git & GitHub**
+- **Maven**
+- **Swagger** (API documentation)
 
-JWT Authentication
-
-JPA / Hibernate
-
-MySQL or PostgreSQL
-
-Frontend
-
-React
-
-Axios
-
-Basic CSS / Tailwind (simple UI)
-
-Tools
-
-Git & GitHub
-
-Maven
-
-Swagger (API documentation)
 
 ---
 
