@@ -2,9 +2,11 @@
 
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.db import get_db  # Ensure this import is correct
+from backend.app.db import get_db 
 from backend.app.services.request_service import create_request, get_requests, get_request, update_request, delete_request
 from backend.app.models import RequestCreate, RequestUpdate
+from backend.app.security.auth import router as auth_router
+
 
 app = FastAPI()
 
@@ -44,3 +46,5 @@ def delete_service_request(request_id: int, db: Session = Depends(get_db)):
     if not db_request:
         raise HTTPException(status_code=404, detail="Request not found")
     return {"message": "Request deleted successfully"}
+
+app.include_router(auth_router)

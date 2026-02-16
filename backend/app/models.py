@@ -1,31 +1,24 @@
 # backend/app/models.py
 
-from pydantic import BaseModel
-from datetime import datetime
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String
+from passlib.context import CryptContext  # For password hashing
 from backend.app.db import Base
 
-# Request model for the database
-class Request(Base):
-    __tablename__ = "requests"
+# Password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# User model
+class User(Base):
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    status = Column(String, default="Pending")  # Status: Pending, In Progress, Completed
+    username = Column(String, unique=True, index=True)
+    password_hash = Column(String)
 
-    # User who submitted the request (for now using a mock user)
-    user_id = Column(Integer, ForeignKey("users.id"))
-    user = relationship("User", back_populates="requests")
+    # Method to hash password
+    def set_password(self, password: str):
+        self.password_hash = pwd_context.hash(password)
 
-# Pydantic model for Request input validation
-class RequestCreate(BaseModel):
-    title: str
-    description: str
-
-class RequestUpdate(BaseModel):
-    title: str
-    description: str
-    status: str
+    # Method to verify password
+    def verify_password(self, password: str):
+        return pwd_context.verify(password, self.password_hash)
