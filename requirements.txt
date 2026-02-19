@@ -1,8 +1,0 @@
-﻿fastapi
-uvicorn
-sqlalchemy
-mysql-connector-python
-pydantic
-python-jose[cryptography]
-passlib[bcrypt]
-python-multipart

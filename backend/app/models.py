@@ -1,34 +1,14 @@
-﻿# backend/app/models.py
-
+from pydantic import BaseModel  # Import BaseModel
 from sqlalchemy import Column, Integer, String, Enum
-from passlib.context import CryptContext
-from backend.app.db import Base
 import enum
+from backend.app.db import Base
 
-# Password hashing context
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# Request Status Enum
 class RequestStatusEnum(enum.Enum):
     pending = "pending"
     in_progress = "in_progress"
     completed = "completed"
 
-# User model
-class User(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    password_hash = Column(String)
-
-    def set_password(self, password: str):
-        self.password_hash = pwd_context.hash(password)
-
-    def verify_password(self, password: str):
-        return pwd_context.verify(password, self.password_hash)
-
-# Request model
+# Request model (SQLAlchemy)
 class Request(Base):
     __tablename__ = "requests"
 
@@ -37,3 +17,15 @@ class Request(Base):
     description = Column(String)
     status = Column(Enum(RequestStatusEnum), default=RequestStatusEnum.pending)
     user_id = Column(Integer)
+
+# RequestCreate (Pydantic model for incoming request data)
+class RequestCreate(BaseModel):  # Make sure BaseModel is imported
+    title: str
+    description: str
+    status: RequestStatusEnum = RequestStatusEnum.pending
+
+# RequestUpdate (Pydantic model for updating request data)
+class RequestUpdate(BaseModel):  # Make sure BaseModel is imported
+    title: str
+    description: str
+    status: RequestStatusEnum
