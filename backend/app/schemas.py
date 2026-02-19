@@ -1,28 +1,13 @@
-﻿# backend/app/schemas.py
+# backend/app/schemas.py
 
 from pydantic import BaseModel
 from enum import Enum
 
-# Request Status Enum for Pydantic
 class RequestStatusEnum(str, Enum):
     pending = "pending"
     in_progress = "in_progress"
     completed = "completed"
 
-# User Schemas
-class UserBase(BaseModel):
-    username: str
-
-class UserCreate(UserBase):
-    password: str
-
-class User(UserBase):
-    id: int
-
-    class Config:
-        from_attributes = True
-
-# Request Schemas
 class RequestBase(BaseModel):
     title: str
     description: str
@@ -39,4 +24,4 @@ class Request(RequestBase):
     user_id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
